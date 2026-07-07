@@ -61,6 +61,7 @@ import { olandoCategory } from 'src/olando';
   // Fiat value of fungible token holdings using Cauldron DEX price data
   const holdingsFiatValue = ref<number | null>(null);
   const lastRateUpdate = ref<string>('');
+  const lastRateUpdate = ref<string>('');
 
   // Watch for changes in the relevant data and recalculate fiat value
   // Note: could be a computed if BCH exchange rate was available synchronously
@@ -471,7 +472,7 @@ import { olandoCategory } from 'src/olando';
         />
         <div class="tokenBaseInfo">
           <div class="tokenAmount">
-            {{ numberFormatter.format(toAmountDecimals(tokenData?.amount)) }} {{ tokenMetaData?.token?.symbol }}
+            <span class="tokenAmountValue">{{ numberFormatter.format(toAmountDecimals(tokenData?.amount)) }}</span> {{ tokenMetaData?.token?.symbol }}
             <span v-if="holdingsFiatValue !== null" class="token-fiat-value">({{ CurrencySymbols[settingsStore.currency] }} {{ holdingsFiatValue.toFixed(2) }})</span>
             <!-- <span v-if="holdingsFiatValue !== null" class="tokenAmount" style="white-space: nowrap;">
               <span v-if="lastRateUpdate" style="font-weight: normal; opacity: 70%;">Last Update: {{ lastRateUpdate }}</span>
