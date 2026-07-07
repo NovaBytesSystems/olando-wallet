@@ -60,7 +60,7 @@ import { olandoCategory } from 'src/olando';
 
   // Fiat value of fungible token holdings using Cauldron DEX price data
   const holdingsFiatValue = ref<number | null>(null);
-  const lastRateUpdate = ref<string>('');
+
   const lastRateUpdate = ref<string>('');
 
   // Watch for changes in the relevant data and recalculate fiat value

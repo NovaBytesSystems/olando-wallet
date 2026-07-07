@@ -7,6 +7,8 @@
   import { useI18n } from 'vue-i18n'
   import { type HDWallet, type TestNetHDWallet, GAP_SIZE } from 'mainnet-js';
   import { useWindowSize } from '@vueuse/core'
+  import LightboxPopup from 'src/components/general/lightbox-popup.vue'
+  import type { LightboxButton } from 'src/components/general/lightbox-popup.vue'
 
   const store = useStore()
   const settingsStore = useSettingsStore()
@@ -30,6 +32,21 @@
   const hideZeroBalances = ref(false);
   const showTokenAddresses = ref(false);
   const changeDetailsOpen = ref(false);
+
+  const showTokenFormatInfoPopup = ref(false);
+  const tokenFormatInfoButtons: LightboxButton[] = [
+    { label: "I'VE UNDERSTOOD!", action: () => { showTokenFormatInfoPopup.value = false } }
+  ];
+
+  const showReceivingInfoPopup = ref(false);
+  const receivingInfoButtons: LightboxButton[] = [
+    { label: "I'VE UNDERSTOOD!", action: () => { showReceivingInfoPopup.value = false } }
+  ];
+
+  const showChangeInfoPopup = ref(false);
+  const changeInfoButtons: LightboxButton[] = [
+    { label: "I'VE UNDERSTOOD!", action: () => { showChangeInfoPopup.value = false } }
+  ];
 
   watch(hideZeroBalances, (newVal) => {
     if (newVal) {
@@ -103,14 +120,38 @@
       </div>
       <div class="filter-toggle">
         {{ t('hdAddresses.showTokenAddresses') }} <Toggle v-model="showTokenAddresses" />
+        <img src="images/olando/info.svg" class="action-icon" style="cursor:pointer; margin-left:6px; vertical-align:middle; width:28px; height:28px;" @click="showTokenFormatInfoPopup = true">
       </div>
     </div>
+
+    <LightboxPopup
+      v-model="showTokenFormatInfoPopup"
+      icon="images/olando/info-white.svg"
+      :blur="true"
+      :buttons="tokenFormatInfoButtons"
+    >
+      <p><strong>Token Format Addresses</strong></p>
+      <p>Token addresses (also called "CashToken addresses") start with <strong>bitcoincash:z...</strong> and are used for receiving CashTokens (fungible tokens and NFTs).</p>
+      <p>Regular BCH addresses start with <strong>bitcoincash:q...</strong></p>
+    </LightboxPopup>
+
+    <LightboxPopup
+      v-model="showReceivingInfoPopup"
+      icon="images/olando/info-white.svg"
+      :blur="true"
+      :buttons="receivingInfoButtons"
+    >
+      <p>For better privacy and wealth handling, our modern „HD wallet" generates new transfer-codes for EACH transaction for OLA tokens.</p>
+      <p><strong>IMPORTANT:</strong><br>
+      You can copy and paste any receiving address-codes here. Maybe you use special addresses for special receiving channels.</p>
+    </LightboxPopup>
 
     <!-- Receiving Addresses -->
     <details class="collapsible-section" open>
       <summary>
         <strong>{{ t('hdAddresses.receivingAddresses') }}</strong> ({{ filteredReceivingCount }})
         <img class="icon" :src="settingsStore.darkMode ? 'images/chevron-square-down-lightGrey.svg' : 'images/chevron-square-down.svg'">
+        <img src="images/olando/info.svg" style="cursor:pointer; margin-left:6px; vertical-align:middle; width:28px; height:28px;" @click.stop="showReceivingInfoPopup = true">
       </summary>
       <table v-if="filteredReceivingCount" class="address-table">
         <thead>
@@ -157,11 +198,22 @@
       <div v-else class="description">{{ t('hdAddresses.noAddresses') }}</div>
     </details>
 
+    <LightboxPopup
+      v-model="showChangeInfoPopup"
+      icon="images/olando/info-white.svg"
+      :blur="true"
+      :buttons="changeInfoButtons"
+    >
+      <p>„Change Addresses" are a result of blockchain technologies and transaction rules.</p>
+      <p>They also could be used as receiving address for OLA tokens.</p>
+    </LightboxPopup>
+
     <!-- Change Addresses -->
     <details class="collapsible-section" :open="changeDetailsOpen || undefined">
       <summary>
         <strong>{{ t('hdAddresses.changeAddresses') }}</strong> ({{ filteredChangeCount }})
         <img class="icon" :src="settingsStore.darkMode ? 'images/chevron-square-down-lightGrey.svg' : 'images/chevron-square-down.svg'">
+        <img src="images/olando/info.svg" style="cursor:pointer; margin-left:6px; vertical-align:middle; width:28px; height:28px;" @click.stop="showChangeInfoPopup = true">
       </summary>
       <table v-if="filteredChangeCount" class="address-table">
         <thead>
