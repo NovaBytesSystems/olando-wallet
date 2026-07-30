@@ -64,7 +64,7 @@
 
   const showSeedInfoPopup = ref(false);
   const seedInfoButtons: LightboxButton[] = [
-    { label: "I'VE UNDERSTOOD!", action: () => { showSeedInfoPopup.value = false } }
+    { label: "UNDERSTOOD", action: () => { showSeedInfoPopup.value = false } }
   ];
 
   function handleSeedphraseCopy(event: ClipboardEvent) {

@@ -65,7 +65,7 @@
 
   const createInfoButtons: LightboxButton[] = [
     {
-      label: "I'VE UNDERSTOOD!",
+      label: "UNDERSTOOD",
       action: () => void createAndFinish()
     }
   ];

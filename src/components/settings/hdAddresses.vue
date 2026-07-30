@@ -35,17 +35,17 @@
 
   const showTokenFormatInfoPopup = ref(false);
   const tokenFormatInfoButtons: LightboxButton[] = [
-    { label: "I'VE UNDERSTOOD!", action: () => { showTokenFormatInfoPopup.value = false } }
+    { label: "UNDERSTOOD", action: () => { showTokenFormatInfoPopup.value = false } }
   ];
 
   const showReceivingInfoPopup = ref(false);
   const receivingInfoButtons: LightboxButton[] = [
-    { label: "I'VE UNDERSTOOD!", action: () => { showReceivingInfoPopup.value = false } }
+    { label: "UNDERSTOOD", action: () => { showReceivingInfoPopup.value = false } }
   ];
 
   const showChangeInfoPopup = ref(false);
   const changeInfoButtons: LightboxButton[] = [
-    { label: "I'VE UNDERSTOOD!", action: () => { showChangeInfoPopup.value = false } }
+    { label: "UNDERSTOOD", action: () => { showChangeInfoPopup.value = false } }
   ];
 
   watch(hideZeroBalances, (newVal) => {
@@ -130,9 +130,8 @@
       :blur="true"
       :buttons="tokenFormatInfoButtons"
     >
-      <p><strong>Token Format Addresses</strong></p>
-      <p>Token addresses (also called "CashToken addresses") start with <strong>bitcoincash:z...</strong> and are used for receiving CashTokens (fungible tokens and NFTs).</p>
-      <p>Regular BCH addresses start with <strong>bitcoincash:q...</strong></p>
+      <p>Normally standard Addresses are shown for receiving BCH.</p>
+      <p>You can also show token Addresses for receiving CashTokens (such as OLA).</p>
     </LightboxPopup>
 
     <LightboxPopup
@@ -141,9 +140,8 @@
       :blur="true"
       :buttons="receivingInfoButtons"
     >
-      <p>For better privacy and wealth handling, our modern „HD wallet" generates new transfer-codes for EACH transaction for OLA tokens.</p>
-      <p><strong>IMPORTANT:</strong><br>
-      You can copy and paste any receiving address-codes here. Maybe you use special addresses for special receiving channels.</p>
+      <p>An unlimited sequence of receiving Addresses are generated from your wallet seed phrase.</p>
+      <p>You can use any of those addresses (you own the keys to them) for receiving, but to improve privacy it is suggested to not reuse addresses, but give out a fresh one each time you receive BCH or tokens.</p>
     </LightboxPopup>
 
     <!-- Receiving Addresses -->
@@ -204,8 +202,8 @@
       :blur="true"
       :buttons="changeInfoButtons"
     >
-      <p>„Change Addresses" are a result of blockchain technologies and transaction rules.</p>
-      <p>They also could be used as receiving address for OLA tokens.</p>
+      <p>Just like the reveiving addresses above, these change adresses are derived from your wallet seed phrase. You own the keys to them and you can use them to receive funds.</p>
+      <p>The wallet uses these addresses to send change to it when you make a payment (blockchain transactions have to "by design" spend full amounts you have received earlier, so in most cases there will be leftover change).</p>
     </LightboxPopup>
 
     <!-- Change Addresses -->
