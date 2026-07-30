@@ -149,7 +149,7 @@
       <summary>
         <strong>{{ t('hdAddresses.receivingAddresses') }}</strong> ({{ filteredReceivingCount }})
         <img class="icon" :src="settingsStore.darkMode ? 'images/chevron-square-down-lightGrey.svg' : 'images/chevron-square-down.svg'">
-        <img src="images/olando/info.svg" style="cursor:pointer; margin-left:6px; vertical-align:middle; width:28px; height:28px;" @click.stop="showReceivingInfoPopup = true">
+        <img src="images/olando/info.svg" style="cursor:pointer; margin-left:6px; vertical-align:middle; width:28px; height:28px;" @click.stop.prevent="showReceivingInfoPopup = true">
       </summary>
       <table v-if="filteredReceivingCount" class="address-table">
         <thead>
@@ -211,7 +211,7 @@
       <summary>
         <strong>{{ t('hdAddresses.changeAddresses') }}</strong> ({{ filteredChangeCount }})
         <img class="icon" :src="settingsStore.darkMode ? 'images/chevron-square-down-lightGrey.svg' : 'images/chevron-square-down.svg'">
-        <img src="images/olando/info.svg" style="cursor:pointer; margin-left:6px; vertical-align:middle; width:28px; height:28px;" @click.stop="showChangeInfoPopup = true">
+        <img src="images/olando/info.svg" style="cursor:pointer; margin-left:6px; vertical-align:middle; width:28px; height:28px;" @click.stop.prevent="showChangeInfoPopup = true">
       </summary>
       <table v-if="filteredChangeCount" class="address-table">
         <thead>
