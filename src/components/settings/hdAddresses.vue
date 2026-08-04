@@ -129,6 +129,7 @@
       icon="images/olando/info-white.svg"
       :blur="true"
       :buttons="tokenFormatInfoButtons"
+      :close-on-outside-click="true"
     >
       <p>Normally standard Addresses are shown for receiving BCH.</p>
       <p>You can also show token Addresses for receiving CashTokens (such as OLA).</p>
@@ -139,6 +140,7 @@
       icon="images/olando/info-white.svg"
       :blur="true"
       :buttons="receivingInfoButtons"
+      :close-on-outside-click="true"
     >
       <p>An unlimited sequence of receiving Addresses are generated from your wallet seed phrase.</p>
       <p>You can use any of those addresses (you own the keys to them) for receiving, but to improve privacy it is suggested to not reuse addresses, but give out a fresh one each time you receive BCH or tokens.</p>
@@ -201,6 +203,7 @@
       icon="images/olando/info-white.svg"
       :blur="true"
       :buttons="changeInfoButtons"
+      :close-on-outside-click="true"
     >
       <p>Just like the reveiving addresses above, these change adresses are derived from your wallet seed phrase. You own the keys to them and you can use them to receive funds.</p>
       <p>The wallet uses these addresses to send change to it when you make a payment (blockchain transactions have to "by design" spend full amounts you have received earlier, so in most cases there will be leftover change).</p>

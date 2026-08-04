@@ -5,23 +5,33 @@
     variant?: 'default' | 'danger'
   }
 
-  defineProps<{
+  const props = defineProps<{
     modelValue: boolean
     icon?: string
     title?: string
     buttons?: LightboxButton[]
     blur?: boolean
+    closeOnOutsideClick?: boolean
   }>()
 
-  defineEmits<{
+  const emit = defineEmits<{
     'update:modelValue': [value: boolean]
   }>()
+
+  function onOverlayClick() {
+    if (props.closeOnOutsideClick) emit('update:modelValue', false)
+  }
 </script>
 
 <template>
   <Teleport to="body">
     <Transition name="lightbox-fade">
-      <div v-if="modelValue" class="lightbox-overlay" :class="{ 'no-blur': blur === false }">
+      <div
+        v-if="modelValue"
+        class="lightbox-overlay"
+        :class="{ 'no-blur': blur === false }"
+        @click.self="onOverlayClick"
+      >
         <div class="lightbox-box">
           <div v-if="icon" class="lightbox-icon">
             <img :src="icon" alt="" />

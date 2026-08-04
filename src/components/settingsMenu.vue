@@ -105,7 +105,7 @@
   const showInfoPopup = ref(false);
   const infoPopupText = ref('');
   const infoPopupButtons: LightboxButton[] = [
-    { label: "Understand", action: () => { showInfoPopup.value = false } }
+    { label: "Understood", action: () => { showInfoPopup.value = false } }
   ];
   function openInfoPopup(text: string) {
     infoPopupText.value = text;
